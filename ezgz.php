@@ -3,7 +3,7 @@
  * Plugin Name: EzGz
  * Plugin URI: http://jamessocol.com/projects/ezgz.php
  * Description: EzGz enables gzip-compression if the visitor's browser can handle it. Uses the PHP ob_gzhandler() callback.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: James Socol
  * Author URI: http://jamessocol.com/
  */
@@ -36,5 +36,6 @@ add_action('init','ezgz_buffer');
 
 function ezgz_buffer ()
 {
-	ob_start('ob_gzhandler');
+    if (!is_admin())
+    	ob_start('ob_gzhandler');
 }
